@@ -28,4 +28,3 @@
       daemon_reload: true
   when: not ee_config_template_all['bootstrap.memory_lock']
 ...
-

@@ -22,10 +22,8 @@ ee_config_template_cluster:
   # xpack.monitoring.collection.enabled: true 
   # discovery.zen.minimum_master_nodes: 2
 
-
 # this gets handed over to elastic.elasticsearch role (merged)
 ee_config_template_all:
   cluster.name: "{{ ee_cluster_name }}"
   bootstrap.memory_lock: true
   search.allow_expensive_queries: false
-

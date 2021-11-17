@@ -3,4 +3,4 @@
   hosts: single_node
   roles:
   - joe-speedboat.elastic_easy
-
+...
