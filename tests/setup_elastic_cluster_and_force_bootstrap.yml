@@ -1,0 +1,17 @@
+---
+- name: bootstrap new cluster
+  hosts: elastic
+  vars:
+    ee_master_nodes: "{{ groups['all'][0] }}"
+  roles:
+  - joe-speedboat.elastic_easy
+
+- name: reform cluster for HA and quorum
+  hosts: elastic
+  pre_tasks:
+  - name: Pause for 2 minute to ensure cluster is bootstrapped
+    pause:
+      minutes: 2
+  roles:
+  - joe-speedboat.elastic_easy
+

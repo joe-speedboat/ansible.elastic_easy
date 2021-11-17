@@ -1,0 +1,26 @@
+[elastic:children]
+elastic_master
+elastic_data
+[elastic:vars]
+ee_cluster_name=graylog
+es_auto_create_index=false
+
+[elastic_master]
+test01
+test02
+test03
+[elastic_master:vars]
+# ee_is_data=false
+
+[elastic_data]
+test04
+test05
+test06
+[elastic_data:vars]
+ee_is_master=false
+
+[single_node]
+test07
+[single_node:vars]
+es_auto_create_index=false
+ee_cluster_name=graylog
