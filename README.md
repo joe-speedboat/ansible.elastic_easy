@@ -44,8 +44,8 @@ HINT
 ```
 WARNING about es_config
 -----------------------
-* defining elements of 'es_config' dict, is not allowed, since we configure that for you
-* if you want to do so, use ee_config dict
+* defining elements of ```es_config``` dict, is not allowed, since we configure that for you
+* if you want to do so, use ```ee_config``` dict
 
 
 Dependencies
