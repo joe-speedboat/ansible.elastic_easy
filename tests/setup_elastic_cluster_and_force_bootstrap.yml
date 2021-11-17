@@ -2,7 +2,7 @@
 - name: bootstrap new cluster
   hosts: elastic
   vars:
-    ee_master_nodes: "{{ groups['all'][0] }}"
+    ee_master_nodes: "{{ groups['elastic_master'][0] }}"
   roles:
   - joe-speedboat.elastic_easy
 - name: reform cluster for HA and quorum
