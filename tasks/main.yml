@@ -1,40 +1,9 @@
 ---
-# tasks file for joe-speedboat.elastic_easy
-
-################## MEMLOCK ################################
-- name: enable bootstrap.memory_lock
-  block:
-  - name: enable elastisearch service options directory
-    file:
-      path: /etc/systemd/system/elasticsearch.service.d
-      state: directory
-      mode: '0755'
-  - name: give memlock permission to elasticsearch
-    copy:
-      dest: /etc/systemd/system/elasticsearch.service.d/override.conf
-      content: |
-        [Service]
-        LimitMEMLOCK=infinity
-  - name: reload service configuration
-    systemd:
-      daemon_reload: true
-  when: ee_config_template_all['bootstrap.memory_lock']
-- name: disable bootstrap.memory_lock
-  block:
-  - name: remove elastisearch service options directory
-    file:
-      path: /etc/systemd/system/elasticsearch.service.d
-      state: absent
-  - name: reload service configuration
-    systemd:
-      daemon_reload: true
-  when: not ee_config_template_all['bootstrap.memory_lock']
-
-
-################## CREATE CLUSTER CONFIG ##################
+# tasks file for joe-speedboat.elastic_easy/tasks/main.yml
+- name: configure bootstrap.memory_lock
+  include_tasks: bootstrap_memory_lock.yml
 - name: create cluster configuration
   block:
-  ################ PREP MASTERS LIST ######################
   - name: find hosts with ee_is_master=true in hostvars of inventory
     set_fact:
       ee_masters: "{{ ee_masters|default(['']) + [ hostvars[item]['inventory_hostname_short'] ]}}"
@@ -45,8 +14,6 @@
       ee_config_masters_list:
         cluster.initial_master_nodes: "{{ ee_masters|select()|list|unique|join(',') }}"
         discovery.seed_hosts: "{{ ee_masters|select()|list|join(',') }}"
-
-  ################ MERGE TEMPLATES FOR CLUSTER ############
   - name: merge ee_config_template_cluster -over-> ee_config_template_all -into-> es_config 
     set_fact:
       es_config: "{{ ee_config_template_all|combine(ee_config_template_cluster) }}"
@@ -55,16 +22,12 @@
       es_config: "{{ es_config|combine(ee_config_masters_list) }}"
     when: ee_master_nodes == ''
   when: ansible_play_hosts_all|length > 1
-
-################## CREATE SINGLE NODE CONFIG ##############
 - name: create single node configuration
   block:
   - name: merge ee_config_template_single -over-> ee_config_template_all -into-> es_config
     set_fact:
       es_config: "{{ ee_config_template_all|combine(ee_config_template_single) }}"
   when: (ansible_play_hosts_all|length) == 1
-
-################## BUILD ES_CONFIG DICT ###################
 - name: merge ee_config over es_config
   set_fact:
     es_config: "{{ es_config|combine(ee_config)}}"
