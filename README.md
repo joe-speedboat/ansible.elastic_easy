@@ -32,6 +32,22 @@ Role Variables
 
 All variables are documented in ```defaults/main.yml```
 
+HINT
+--------------
+* vars of joe-speedboat.elastic_easy role start with ```ee_```
+* vars of ```elastic.elasticsearch``` role start with ```es_```
+
+```
+  es_config <-- +ee_config <---- +ee_config_template_cluster [if node > 1] <--- ee_config_template_all
+                             \-- +ee_config_template_single  [if node = 1] <-/
+
+```
+WARNING about es_config
+-----------------------
+# defining elements of 'es_config' dict, is not allowed, since we configure that for you
+# if you want to do so, use ee_config dict
+
+
 Dependencies
 ------------
 
