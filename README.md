@@ -15,7 +15,7 @@ The basic idea is to have a "as simple as possible" role that achieves the follo
 This role follows the principal of unix/linux that says one tool is doing one thing, 
 but this single thing, it does in a simple and clean way.
 Altought I tried to achieve the target, your feedback by pull requests and issue requests are highly welcome.
-Since elasticsearch is still a complex thin, do not expect to get free consulting here ...
+Since elasticsearch is still a complex thing, do not expect to get free consulting here ...
 But for good money, we do good consulting as well :-)
 
 Cheers
