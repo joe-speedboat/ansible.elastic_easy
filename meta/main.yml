@@ -12,7 +12,6 @@ galaxy_info:
     - 8
   galaxy_tags: 
   - elasticsearch
-
 # We don't use dependencies in here anymore, look into the ```roles/requirements.yml```
 dependencies: []
 ...

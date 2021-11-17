@@ -31,9 +31,7 @@
 - name: merge ee_config over es_config
   set_fact:
     es_config: "{{ es_config|combine(ee_config)}}"
-
 - name: run role elastic.elasticsearch role
   include_role:
     name: elastic.elasticsearch
 ...
-
