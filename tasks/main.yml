@@ -13,7 +13,7 @@
     set_fact:
       ee_config_masters_list:
         cluster.initial_master_nodes: "{{ ee_masters|select()|list|unique|join(',') }}"
-        discovery.seed_hosts: "{{ ee_masters|select()|list|join(',') }}"
+        discovery.seed_hosts: "{{ ee_masters|select()|list|unique|join(',') }}"
   - name: merge ee_config_template_cluster -over-> ee_config_template_all -into-> es_config 
     set_fact:
       es_config: "{{ ee_config_template_all|combine(ee_config_template_cluster) }}"
@@ -31,6 +31,8 @@
 - name: merge ee_config over es_config
   set_fact:
     es_config: "{{ es_config|combine(ee_config)}}"
+    es_heap_size: "{{ ee_heap_size }}"
+    es_action_auto_create_index: "{{ ee_action_auto_create_index }}"
 - name: run role elastic.elasticsearch role
   include_role:
     name: elastic.elasticsearch

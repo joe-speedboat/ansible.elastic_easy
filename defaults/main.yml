@@ -14,6 +14,12 @@
 # best cluster name ever :-)
 ee_cluster_name: "hobbes"
 #
+# we calculate the heap_size dynamically
+ee_heap_size: "{{ (ansible_memtotal_mb - 2048)|round|int }}m"
+#
+# we keep default behaviour from wrapped role
+ee_action_auto_create_index: true
+# 
 # by default configure all members as master nodes
 ee_is_master: true
 #
@@ -38,6 +44,4 @@ ee_config: {}
 # - host_vars
 #
 #
-# we calculate the heap_size dynamically
-es_heap_size: "{{ (ansible_memtotal_mb/2-1024)|round|int }}m"
 ...
