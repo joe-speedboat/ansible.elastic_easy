@@ -95,14 +95,14 @@ elastic_master
 elastic_data
 [elastic:vars]
 ee_cluster_name=graylog
-es_auto_create_index=false
+ee_action_auto_create_index=false
 
 [elastic_master]
 test01
 test02
 test03
 [elastic_master:vars]
-# ee_is_data=false
+ee_is_data=false
 
 [elastic_data]
 test04
@@ -110,7 +110,6 @@ test05
 test06
 [elastic_data:vars]
 ee_is_master=false
-es_heap_size=6g
 EOF
 
 # pull THE ROLE :-)
@@ -131,7 +130,6 @@ watch head -n 20 /etc/elasticsearch/elasticsearch.yml
 tail -F /var/log/elasticsearch/*.log
 journalctl -af
 ```
-
 
 
 License
