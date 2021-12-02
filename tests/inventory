@@ -22,5 +22,4 @@ es_heap_size=6g
 [single_node]
 test06
 [single_node:vars]
-ee_auto_create_index=false
 ee_action_auto_create_index=false
