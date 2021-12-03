@@ -1,12 +1,11 @@
+[all:vars]
+ee_cluster_name=graylog
+ee_action_auto_create_index=false
+
 [elastic]
 test01
 test02
 test03
-[elastic:vars]
-ee_cluster_name=graylog
-ee_action_auto_create_index=false
 
 [single_node]
 test01
-[single_node:vars]
-ee_action_auto_create_index=false
