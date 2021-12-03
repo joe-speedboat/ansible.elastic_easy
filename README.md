@@ -8,6 +8,7 @@ The basic idea is to have a "as simple as possible" role that achieves the follo
 * inventory of multiple hosts will form a working cluster 
 * single node inventory will form a secured single node
 * add and/or reconfigure nodes within a cluster
+* scale out single node into real cluster
 * automatic bootstrapping of a new cluster
 * basic best practice implemented
 * more to follow...
