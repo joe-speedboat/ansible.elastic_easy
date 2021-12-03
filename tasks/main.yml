@@ -52,12 +52,12 @@
     include_role:
       name: elastic.elasticsearch
     vars:
-  - name: Pause for 3 minute to ensure cluster is bootstrapped
+  - name: Pause for {{ ee_auto_scale_out_seed_wait_min }} minute to ensure cluster is bootstrapped
     pause:
-      minutes: 3
-  when: (ansible_play_hosts_all|length) > 1
-- name: run role elastic.elasticsearch role
+      minutes: "{{ ee_auto_scale_out_seed_wait_min }}"
+  when: ((ansible_play_hosts_all|length) > 1) and ee_auto_scale_out
 
+- name: run role elastic.elasticsearch role
   include_role:
     name: elastic.elasticsearch
 ...

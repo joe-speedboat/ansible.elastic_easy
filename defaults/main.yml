@@ -11,6 +11,12 @@
 # defining elements of 'es_config' dict, is not allowed, since we configure that for you
 # if you want to do so, use ee_config dict
 #
+### Now this role will scale out single node into cluster and avoid splitting ###########
+# if you already have a 3 node or larger cluster running, you can disable that
+ee_auto_scale_out: true
+# after seeding first master node, wait X minutes to avoid cluster splitting
+ee_auto_scale_out_seed_wait_min: 2
+
 # best cluster name ever :-)
 ee_cluster_name: "hobbes"
 #
